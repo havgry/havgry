@@ -3,7 +3,10 @@
   "private": true,
   "scripts": {
     "buildDev": "webpack-dev-server --inline --hot --port 3000",
-    "build": "cross-env NODE_ENV=production webpack --hide-modules --optimize-minimize"
+    "build": "cross-env NODE_ENV=production webpack --hide-modules --optimize-minimize",
+    "clean": "rm -rf dist/*",
+    "release": "npm run clean && npm run build",
+    "deploy": "cd dist && git add --all && git commit -m \"Release at $(date)\" && git push"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
