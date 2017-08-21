@@ -1,0 +1,17 @@
+{
+  "extends": ["airbnb-base"],
+  "plugins": ["standard", "import", "html"],
+  "rules": {
+    "semi": [2, "never"]
+  },
+  "env": {
+    "browser": true
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    }
+  }
+}
