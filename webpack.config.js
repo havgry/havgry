@@ -5,8 +5,8 @@ var WebpackNotifierPlugin = require('webpack-notifier')
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
+    path: path.resolve(__dirname, './assets'),
+    publicPath: '/assets/',
     filename: 'build.js'
   },
   resolve: {

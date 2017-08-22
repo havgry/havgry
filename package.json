@@ -4,8 +4,8 @@
   "scripts": {
     "buildDev": "webpack-dev-server --inline --hot --port 3000",
     "build": "cross-env NODE_ENV=production webpack --hide-modules --optimize-minimize",
-    "clean": "rm -rf dist/*",
-    "release": "npm run clean && npm run build && cp index.html dist/index.html",
+    "clean": "rm -rf dist/* assets/*",
+    "release": "npm run clean && npm run build && cp -R assets dist/assets && cp index.html dist/index.html",
     "deploy": "npm run release && gh-pages -d dist"
   },
   "devDependencies": {
