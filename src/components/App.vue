@@ -4,26 +4,36 @@
       <ul :class="{ 'is-hovering': isHoveringLink }">
         <router-link tag="li" :to="{ name: 'ideas' }">
           <span class="content-container">
-            I think <span @mouseover="linkMouseOver" @mouseout="linkMouseOut"><a>ideas</a></span>
-            <div class="content" v-if="routeName === 'ideas'">Ideas description.</div>
+            I think <span @mouseover="linkMouseOver" @mouseout="linkMouseOut"><a class="main-link">ideas</a></span>
+            <div class="content" v-if="routeName === 'ideas'">
+              <p>Ideas description.</p>
+              <router-link :to="{ name: 'home' }" v-if="!isHome">&larr; Back</router-link>
+            </div>
           </span>
         </router-link>
         <router-link tag="li" :to="{ name: 'prototypes' }">
           <span class="punctuation">, </span>
           <span class="content-container">
-            I design <span @mouseover="linkMouseOver" @mouseout="linkMouseOut"><a>prototypes</a></span>
-            <div class="content" v-if="routeName === 'prototypes'">Prototypes description.</div>
+            I design <span @mouseover="linkMouseOver" @mouseout="linkMouseOut"><a class="main-link">prototypes</a></span>
+            <div class="content" v-if="routeName === 'prototypes'">
+              <p>Prototypes description.</p>
+              <router-link :to="{ name: 'home' }" v-if="!isHome">&larr; Back</router-link>
+            </div>
           </span>
         </router-link>
         <router-link tag="li" :to="{ name: 'code' }">
           <span class="punctuation">, and </span>
           <span class="content-container">
-            I write <span @mouseover="linkMouseOver" @mouseout="linkMouseOut"><a>code</a></span>
-            <div class="content" v-if="routeName === 'code'">Code description.</div>
+            I write <span @mouseover="linkMouseOver" @mouseout="linkMouseOut"><a class="main-link">code</a></span>
+            <div class="content" v-if="routeName === 'code'">
+              <p>Code description.</p>
+              <router-link :to="{ name: 'home' }" v-if="!isHome">&larr; Back</router-link>
+            </div>
           </span>
         </router-link>
       </ul>
     </nav>
+    
   </div>
 </template>
 
@@ -73,7 +83,6 @@ export default {
 .content {
   width: 25em;
   position: absolute;
-  margin: 1em 0;
   left: 0;
   display: block;
   font-size: 2vw;
@@ -90,11 +99,6 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
-}
-
-.router-link-active a {
-  color: #fff;
-  pointer-events: none;
 }
 
 .page li:not(.router-link-active),
@@ -114,8 +118,15 @@ a {
   padding: 0 0.1em;
   margin: 0 -0.14em;
   border-bottom: 0.04em solid;
+}
+
+.main-link {
   .is-hovering & {
     border-bottom-color: transparent;
+  }
+  .router-link-active & {
+    color: #fff;
+    pointer-events: none;
   }
 }
 
