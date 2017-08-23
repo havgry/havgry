@@ -1,10 +1,10 @@
 <template>
   <div>
     <nav>
-      <ul>
-        <li>I think <router-link :to="{ name: 'ideas' }">ideas</router-link></li>
-        <li>, I design <router-link :to="{ name: 'prototypes' }">prototypes</router-link></li>
-        <li>, and I write <router-link :to="{ name: 'code' }">code</router-link></li>
+      <ul :class="{ 'is-hovering': isHoveringLink }">
+        <li>I think <router-link :to="{ name: 'ideas' }" @mouseover.native="linkMouseOver" @mouseout.native="linkMouseOut">ideas</router-link></li>
+        <li>, I design <router-link :to="{ name: 'prototypes' }" @mouseover.native="linkMouseOver" @mouseout.native="linkMouseOut">prototypes</router-link></li>
+        <li>, and I write <router-link :to="{ name: 'code' }" @mouseover.native="linkMouseOver" @mouseout.native="linkMouseOut">code</router-link></li>
       </ul>
     </nav>
     <router-view/>
@@ -14,6 +14,17 @@
 <script>
 export default {
   name: 'app',
+  data: () => ({
+    isHoveringLink: false,
+  }),
+  methods: {
+    linkMouseOver() {
+      this.isHoveringLink = true
+    },
+    linkMouseOut() {
+      this.isHoveringLink = false
+    },
+  },
 }
 </script>
 
@@ -54,6 +65,9 @@ a {
   padding: 0 0.1em;
   margin: 0 -0.14em;
   border-bottom: 0.04em solid;
+  .is-hovering & {
+    border-bottom-color: transparent;
+  }
 }
 
 @mixin linkColor($color) {
