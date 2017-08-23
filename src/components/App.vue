@@ -93,6 +93,7 @@ ul {
 }
 
 .router-link-active a {
+  color: #fff;
   pointer-events: none;
 }
 
@@ -123,6 +124,9 @@ a {
   .router-link-active &,
   &:hover {
     border-color: $color;
+  }
+  .router-link-active & {
+    background: $color;
   }
 }
 
