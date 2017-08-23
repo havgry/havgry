@@ -1,22 +1,47 @@
 <template>
   <div>
-    <nav>
+    <nav :class="{ page: !isFront }">
       <ul :class="{ 'is-hovering': isHoveringLink }">
-        <li>I think <router-link :to="{ name: 'ideas' }" @mouseover.native="linkMouseOver" @mouseout.native="linkMouseOut">ideas</router-link></li>
-        <li>, I design <router-link :to="{ name: 'prototypes' }" @mouseover.native="linkMouseOver" @mouseout.native="linkMouseOut">prototypes</router-link></li>
-        <li>, and I write <router-link :to="{ name: 'code' }" @mouseover.native="linkMouseOver" @mouseout.native="linkMouseOut">code</router-link></li>
+        <router-link tag="li" :to="{ name: 'ideas' }">
+          <span class="content-container">
+            I think <span @mouseover="linkMouseOver" @mouseout="linkMouseOut"><a>ideas</a></span>
+            <div class="content" v-if="routeName === 'ideas'">Ideas description.</div>
+          </span>
+        </router-link>
+        <router-link tag="li" :to="{ name: 'prototypes' }">
+          <span class="punctuation">, </span>
+          <span class="content-container">
+            I design <span @mouseover="linkMouseOver" @mouseout="linkMouseOut"><a>prototypes</a></span>
+            <div class="content" v-if="routeName === 'prototypes'">Prototypes description.</div>
+          </span>
+        </router-link>
+        <router-link tag="li" :to="{ name: 'code' }">
+          <span class="punctuation">, and </span>
+          <span class="content-container">
+            I write <span @mouseover="linkMouseOver" @mouseout="linkMouseOut"><a>code</a></span>
+            <div class="content" v-if="routeName === 'code'">Code description.</div>
+          </span>
+        </router-link>
       </ul>
     </nav>
-    <router-view/>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'app',
   data: () => ({
     isHoveringLink: false,
   }),
+  computed: {
+    ...mapState({
+      title: state => state.title,
+      isFront: state => state.route.meta.front,
+      routeName: state => state.route.name,
+    }),
+  },
   methods: {
     linkMouseOver() {
       this.isHoveringLink = true
@@ -41,6 +66,20 @@ export default {
   box-sizing: border-box;
 }
 
+.content-container {
+  position: relative;
+}
+
+.content {
+  width: 25em;
+  position: absolute;
+  margin: 1em 0;
+  left: 0;
+  display: block;
+  font-size: 2vw;
+  font-family: 'PT Sans', sans-serif;
+}
+
 body {
   font-family: 'PT Sans', sans-serif;
   line-height: 1.4;
@@ -51,6 +90,15 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.router-link-active a {
+  pointer-events: none;
+}
+
+.page li:not(.router-link-active),
+.router-link-active .punctuation {
+  visibility: hidden;
 }
 
 nav {
@@ -72,6 +120,7 @@ a {
 
 @mixin linkColor($color) {
   border-bottom-color: $color;
+  .router-link-active &,
   &:hover {
     border-color: $color;
   }
