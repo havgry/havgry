@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import _isUndefined from 'lodash/isUndefined'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -13,7 +15,7 @@ export default new Vuex.Store({
       const title = payload.title
 
       state.title = title
-      document.title = `${title} – Havgry.com`
+      document.title = `${(_isUndefined(title) ? '' : `${title} – `)}Havgry`
     },
     /* eslint-enabke no-param-reassign */
   },

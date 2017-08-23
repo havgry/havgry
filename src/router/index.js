@@ -14,9 +14,6 @@ const router = new Router({
     {
       path: '/',
       name: 'front',
-      meta: {
-        pageTitle: 'Front',
-      },
     },
     {
       path: 'ideas',
