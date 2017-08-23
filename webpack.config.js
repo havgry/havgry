@@ -11,10 +11,22 @@ module.exports = {
   },
   resolve: {
     modules: ['src', 'node_modules'],
-    extensions: ['.js'],
+    extensions: ['.js', '.vue'],
   },
   module: {
     rules: [
+        // Only lint local *.vue files
+      {
+        enforce: 'pre',
+        test: /\.vue$/,
+        loader: 'eslint-loader',
+        exclude: /node_modules/
+      },
+      // But use vue-loader for all *.vue files
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      },
       {
         test: /\.js$/,
         loader: ['babel-loader', 'eslint-loader'],
