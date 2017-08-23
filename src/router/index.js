@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import Ideas from 'components/Ideas/Index.vue'
+import Prototypes from 'components/Prototypes/Index.vue'
+import Code from 'components/Code/Index.vue'
+
 Vue.use(Router)
 
 const router = new Router({
@@ -12,6 +16,30 @@ const router = new Router({
       name: 'front',
       meta: {
         pageTitle: 'Front',
+      },
+    },
+    {
+      path: 'ideas',
+      name: 'ideas',
+      component: Ideas,
+      meta: {
+        pageTitle: 'Ideas',
+      },
+    },
+    {
+      path: 'prototypes',
+      name: 'prototypes',
+      component: Prototypes,
+      meta: {
+        pageTitle: 'Prototypes',
+      },
+    },
+    {
+      path: 'code',
+      name: 'code',
+      component: Code,
+      meta: {
+        pageTitle: 'Code',
       },
     },
   ],
