@@ -12,9 +12,9 @@ const router = new Router({
       children: [
         {
           path: '',
-          name: 'front',
+          name: 'home',
           meta: {
-            front: true,
+            home: true,
           },
         },
         {

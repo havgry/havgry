@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav :class="{ page: !isFront }">
+    <nav :class="{ page: !isHome }">
       <ul :class="{ 'is-hovering': isHoveringLink }">
         <router-link tag="li" :to="{ name: 'ideas' }">
           <span class="content-container">
@@ -38,7 +38,7 @@ export default {
   computed: {
     ...mapState({
       title: state => state.title,
-      isFront: state => state.route.meta.front,
+      isHome: state => state.route.meta.home,
       routeName: state => state.route.name,
     }),
   },
