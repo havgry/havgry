@@ -9,31 +9,36 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'front',
-      meta: {
-        front: true,
-      },
-    },
-    {
-      path: 'ideas',
-      name: 'ideas',
-      meta: {
-        pageTitle: 'Ideas',
-      },
-    },
-    {
-      path: 'prototypes',
-      name: 'prototypes',
-      meta: {
-        pageTitle: 'Prototypes',
-      },
-    },
-    {
-      path: 'code',
-      name: 'code',
-      meta: {
-        pageTitle: 'Code',
-      },
+      children: [
+        {
+          path: '',
+          name: 'front',
+          meta: {
+            front: true,
+          },
+        },
+        {
+          path: '/ideas',
+          name: 'ideas',
+          meta: {
+            pageTitle: 'Ideas',
+          },
+        },
+        {
+          path: '/prototypes',
+          name: 'prototypes',
+          meta: {
+            pageTitle: 'Prototypes',
+          },
+        },
+        {
+          path: '/code',
+          name: 'code',
+          meta: {
+            pageTitle: 'Code',
+          },
+        },
+      ],
     },
   ],
 })
