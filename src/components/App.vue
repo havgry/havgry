@@ -14,7 +14,14 @@
         </router-link>
       </ul>
     </nav>
-    
+    <div class="vcard" v-if="isHome">
+      <div class="fn">Magnus Havgry</div>
+      <div clss="email">magnushavgry@gmail.com</div>
+      <div class="tel">+45 509 800 80</div>
+      <div class="adr">
+        <span class="locality">Copenhagen</span>, <span class="country-name">Denmark</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -152,6 +159,13 @@ a {
 
 [href*='code'] {
   @include linkColor(#03a9f4);
+}
+
+.vcard {
+  font-size: 2vw;
+  position: absolute;
+  left: 6vw;
+  bottom: 6vw;
 }
 
 </style>
