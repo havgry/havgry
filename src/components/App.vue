@@ -1,27 +1,33 @@
 <template>
   <div>
     <nav :class="{ page: !isHome }">
-      <ul :class="{ 'is-hovering': isHoveringLink }" v-for="page in pages">
-        <router-link tag="li" :to="{ name: page.name }">
-          <span class="prefix" v-if="page.prefix" v-text="page.prefix"/>
-          <span class="content-container">
-            {{ page.text }} <span @mouseover="linkMouseOver" @mouseout="linkMouseOut"><a class="main-link">{{ page.name }}</a></span>
-            <div class="content" v-if="routeName === page.name">
-              <p>{{ page.content }}</p>
-              <router-link :to="{ name: 'home' }" v-if="!isHome">&larr; Back</router-link>
-            </div>
-          </span>
-        </router-link>
+      <ul :class="{ 'is-hovering': isHoveringLink }">
+        <template v-for="page in pages">
+          <router-link tag="li" :to="{ name: page.name }">
+            <span class="prefix" v-if="page.prefix" v-text="page.prefix"/>
+            <span class="content-container">
+              {{ page.text }} <span @mouseover="linkMouseOver" @mouseout="linkMouseOut"><a class="main-link">{{ page.name }}</a></span>
+              <transition name="fade">
+                <div class="content" v-if="page.name === routeName">
+                  <p>{{ page.content }}</p>
+                  <router-link :to="{ name: 'home' }">&larr; Back</router-link>
+                </div>
+              </transition>
+            </span>
+          </router-link>
+        </template>
       </ul>
     </nav>
-    <div class="vcard" v-if="isHome">
-      <div class="fn">Magnus Havgry</div>
-      <div clss="email">magnushavgry@gmail.com</div>
-      <div class="tel">+45 509 800 80</div>
-      <div class="adr">
-        <span class="locality">Copenhagen</span>, <span class="country-name">Denmark</span>
+    <transition name="fade">
+      <div class="vcard" v-if="isHome">
+        <div class="fn">Magnus Havgry</div>
+        <div clss="email">magnushavgry@gmail.com</div>
+        <div class="tel">+45 509 800 80</div>
+        <div class="adr">
+          <span class="locality">Copenhagen</span>, <span class="country-name">Denmark</span>
+        </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -76,6 +82,8 @@ export default {
 @import '~normalize.css/normalize.css';
 @import url('https://fonts.googleapis.com/css?family=PT+Sans|PT+Serif');
 
+$transition-speed: .2s;
+
 [v-cloak] {
   display: none !important;
 }
@@ -86,6 +94,20 @@ export default {
 
 .content-container {
   position: relative;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity $transition-speed ease;
+}
+
+.fade-enter-active {
+  transition-delay: $transition-speed;
 }
 
 .content {
@@ -111,7 +133,17 @@ ul {
 
 .page li:not(.router-link-active),
 .router-link-active .prefix {
-  visibility: hidden;
+  opacity: 0;
+  z-index: -1;
+  position: relative;
+  transition-delay: 0s;
+}
+
+li,
+.prefix {
+  // This transition is not handled by Vue as we
+  // want to retain the `block` display property
+  transition: opacity $transition-speed ease $transition-speed;
 }
 
 nav {
@@ -129,6 +161,7 @@ a {
 }
 
 .main-link {
+  transition: border-color $transition-speed ease, background $transition-speed ease;
   .is-hovering & {
     border-bottom-color: transparent;
   }
