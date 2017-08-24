@@ -10,7 +10,7 @@
               <transition name="fade">
                 <div class="content" v-if="page.name === routeName">
                   <p>{{ page.content }}</p>
-                  <router-link :to="{ name: 'home' }">&larr; Back</router-link>
+                  <router-link class="back" :to="{ name: 'home' }">&larr;</router-link>
                 </div>
               </transition>
             </span>
@@ -154,13 +154,13 @@ nav {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.main-link {
   border: 0.04em solid transparent;
   padding: 0 0.1em;
   margin: 0 -0.14em;
   border-bottom: 0.04em solid;
-}
-
-.main-link {
   transition: border-color $transition-speed ease, background $transition-speed ease;
   .is-hovering & {
     border-bottom-color: transparent;
@@ -169,6 +169,10 @@ a {
     color: #fff;
     pointer-events: none;
   }
+}
+
+.back {
+  font-size: 2em;
 }
 
 @mixin linkColor($color) {
