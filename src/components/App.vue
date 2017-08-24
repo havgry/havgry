@@ -1,32 +1,13 @@
 <template>
   <div>
     <nav :class="{ page: !isHome }">
-      <ul :class="{ 'is-hovering': isHoveringLink }">
-        <router-link tag="li" :to="{ name: 'ideas' }">
+      <ul :class="{ 'is-hovering': isHoveringLink }" v-for="page in pages">
+        <router-link tag="li" :to="{ name: page.name }">
+          <span class="prefix" v-if="page.prefix" v-text="page.prefix"/>
           <span class="content-container">
-            I think <span @mouseover="linkMouseOver" @mouseout="linkMouseOut"><a class="main-link">ideas</a></span>
-            <div class="content" v-if="routeName === 'ideas'">
-              <p>Ideas description.</p>
-              <router-link :to="{ name: 'home' }" v-if="!isHome">&larr; Back</router-link>
-            </div>
-          </span>
-        </router-link>
-        <router-link tag="li" :to="{ name: 'prototypes' }">
-          <span class="punctuation">, </span>
-          <span class="content-container">
-            I design <span @mouseover="linkMouseOver" @mouseout="linkMouseOut"><a class="main-link">prototypes</a></span>
-            <div class="content" v-if="routeName === 'prototypes'">
-              <p>Prototypes description.</p>
-              <router-link :to="{ name: 'home' }" v-if="!isHome">&larr; Back</router-link>
-            </div>
-          </span>
-        </router-link>
-        <router-link tag="li" :to="{ name: 'code' }">
-          <span class="punctuation">, and </span>
-          <span class="content-container">
-            I write <span @mouseover="linkMouseOver" @mouseout="linkMouseOut"><a class="main-link">code</a></span>
-            <div class="content" v-if="routeName === 'code'">
-              <p>Code description.</p>
+            {{ page.text }} <span @mouseover="linkMouseOver" @mouseout="linkMouseOut"><a class="main-link">{{ page.name }}</a></span>
+            <div class="content" v-if="routeName === page.name">
+              <p>{{ page.content }}</p>
               <router-link :to="{ name: 'home' }" v-if="!isHome">&larr; Back</router-link>
             </div>
           </span>
@@ -44,6 +25,26 @@ export default {
   name: 'app',
   data: () => ({
     isHoveringLink: false,
+    pages: [
+      {
+        name: 'ideas',
+        prefix: null,
+        text: 'I think',
+        content: 'Ideas description.',
+      },
+      {
+        name: 'prototypes',
+        prefix: ', ',
+        text: 'I design',
+        content: 'Prototypes description.',
+      },
+      {
+        name: 'code',
+        prefix: ', and ',
+        text: 'I write',
+        content: 'Code description.',
+      },
+    ],
   }),
   computed: {
     ...mapState({
@@ -102,7 +103,7 @@ ul {
 }
 
 .page li:not(.router-link-active),
-.router-link-active .punctuation {
+.router-link-active .prefix {
   visibility: hidden;
 }
 
