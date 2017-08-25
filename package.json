@@ -6,7 +6,7 @@
     "build": "cross-env NODE_ENV=production webpack --hide-modules --optimize-minimize",
     "clean": "rm -rf dist assets/* && mkdir dist",
     "release": "npm run clean && npm run build && cp -R assets dist/assets && cp index.html CNAME dist/",
-    "deploy": "npm run release && gh-pages -d dist -m 'Create release'",
+    "deploy": "npm run release && gh-pages -d dist -m 'Create release'"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
