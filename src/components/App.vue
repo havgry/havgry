@@ -10,7 +10,7 @@
               <transition name="fade">
                 <div class="content" v-if="page.name === routeName">
                   <p>{{ page.content }}</p>
-                  <router-link class="back" :to="{ name: 'home' }">&larr;</router-link>
+                  <router-link class="back-link" :to="{ name: 'home' }">&larr;</router-link>
                 </div>
               </transition>
             </span>
@@ -24,7 +24,7 @@
         <div clss="email">magnushavgry@gmail.com</div>
         <div class="tel">+45 509 800 80</div>
         <div class="adr">
-          <span class="locality">Copenhagen</span>, <span class="country-name">Denmark</span>
+          <span class="locality">Copenhagen</span>
         </div>
       </div>
     </transition>
@@ -171,8 +171,9 @@ a {
   }
 }
 
-.back {
+.back-link {
   font-size: 2em;
+  font-family: 'Helvetica', 'Arial';
 }
 
 @mixin linkColor($color) {
@@ -195,7 +196,7 @@ a {
 }
 
 [href*='code'] {
-  @include linkColor(#03a9f4);
+  @include linkColor(#00b0ff);
 }
 
 .vcard {
