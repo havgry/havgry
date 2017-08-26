@@ -15,7 +15,7 @@ module.exports = {
   },
   module: {
     rules: [
-        // Only lint local *.vue files
+      // Only lint local *.vue files
       {
         enforce: 'pre',
         test: /\.vue$/,

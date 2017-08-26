@@ -9,7 +9,7 @@ import store from './store'
 
 Vue.use(VueRouter)
 
-if (process.env.NODE_ENV === 'PRODUCTION') {
+if (process.env.NODE_ENV === 'production') {
   Vue.use(VueAnalytics, {
     id: 'UA-27432261-5',
     router,
