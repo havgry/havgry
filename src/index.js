@@ -9,6 +9,9 @@ import store from './store'
 
 Vue.use(VueRouter)
 
+// eslint-disable-next-line
+console.log(process.env.NODE_ENV)
+
 if (process.env.NODE_ENV === 'production') {
   Vue.use(VueAnalytics, {
     id: 'UA-27432261-5',
