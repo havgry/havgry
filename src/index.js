@@ -13,11 +13,6 @@ if (process.env.NODE_ENV === 'production') {
   Vue.use(VueAnalytics, {
     id: 'UA-27432261-5',
     router,
-    debug: {
-      enabled: true,
-      trace: true,
-      sendHitTask: true,
-    },
   })
 }
 
