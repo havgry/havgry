@@ -82,6 +82,7 @@ export default {
 @import '~normalize.css/normalize.css';
 @import url('https://fonts.googleapis.com/css?family=Roboto:300');
 
+$border-width: .05em;
 $transition-speed: .2s;
 
 [v-cloak] {
@@ -156,13 +157,10 @@ a {
 }
 
 .main-link {
-  border: 0.05em solid transparent;
-  padding: 0 0.1em;
-  margin: 0 -0.15em;
+  border: $border-width solid transparent;
+  padding: 0 $border-width * 2;
+  margin: 0 -$border-width * 3;
   transition: border-color $transition-speed ease, background $transition-speed ease;
-  .is-hovering & {
-    border-bottom-color: transparent;
-  }
   .router-link-active & {
     color: #fff;
     pointer-events: none;
