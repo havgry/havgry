@@ -80,7 +80,7 @@ export default {
 <style lang="scss">
 
 @import '~normalize.css/normalize.css';
-@import url('https://fonts.googleapis.com/css?family=PT+Sans|PT+Serif');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
 
 $transition-speed: .2s;
 
@@ -116,11 +116,11 @@ $transition-speed: .2s;
   left: 0;
   display: block;
   font-size: 2vw;
-  font-family: 'PT Sans', sans-serif;
 }
 
 body {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
   line-height: 1.4;
   margin: 4vw 6vw;
 }
@@ -148,7 +148,6 @@ li,
 
 nav {
   font-size: 5vw;
-  font-family: 'PT Serif', serif;
 }
 
 a {
@@ -157,10 +156,9 @@ a {
 }
 
 .main-link {
-  border: 0.04em solid transparent;
+  border: 0.05em solid transparent;
   padding: 0 0.1em;
-  margin: 0 -0.14em;
-  border-bottom: 0.04em solid;
+  margin: 0 -0.15em;
   transition: border-color $transition-speed ease, background $transition-speed ease;
   .is-hovering & {
     border-bottom-color: transparent;
@@ -173,11 +171,11 @@ a {
 
 .back-link {
   font-size: 2em;
-  font-family: 'Helvetica', 'Arial';
+  font-family: 'Times New Roman', serif;
 }
 
 @mixin linkColor($color) {
-  border-bottom-color: $color;
+  color: $color;
   .router-link-active &,
   &:hover {
     border-color: $color;
