@@ -85,12 +85,14 @@ export default {
 $border-width: .05em;
 $transition-speed: .2s;
 
-[v-cloak] {
-  display: none !important;
+html {
+  box-sizing: border-box;
 }
 
-* {
-  box-sizing: border-box;
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 
 .content-container {
