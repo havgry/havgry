@@ -55,7 +55,7 @@ export default {
         name: 'code',
         prefix: ', and ',
         text: 'I write',
-        content: 'I do frontend development, and I\'m currently pretty excited about Vue, GraphQL, and Apollo.',
+        content: 'I do frontend development, and I\'m currently pretty excited about Vue and GraphQL.',
       },
     ],
   }),
@@ -162,7 +162,7 @@ a {
   border: $border-width solid transparent;
   padding: 0 $border-width * 2;
   margin: 0 -$border-width * 3;
-  transition: border-color $transition-speed ease, background $transition-speed ease;
+  transition: border-color $transition-speed ease, background-color $transition-speed ease;
   .router-link-active & {
     color: #fff;
     pointer-events: none;
