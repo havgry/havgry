@@ -6,10 +6,10 @@
           <router-link tag="li" :to="{ name: page.name }">
             <span class="prefix" v-if="page.prefix" v-text="page.prefix"/>
             <span class="content-container">
-              {{ page.text }} <span @mouseover="linkMouseOver" @mouseout="linkMouseOut"><a class="main-link">{{ page.name }}</a></span>
+              {{ page.namePrefix }} <span @mouseover="linkMouseOver" @mouseout="linkMouseOut"><a class="main-link">{{ page.name }}</a></span>
               <transition name="fade">
                 <div class="content" v-if="page.name === routeName">
-                  <p>{{ page.content }}</p>
+                  <p v-for="paragraph in page.paragraphs" v-html="paragraph"/>
                   <router-link class="back-link" :to="{ name: 'home' }">&larr;</router-link>
                 </div>
               </transition>
@@ -42,20 +42,27 @@ export default {
       {
         name: 'ideas',
         prefix: null,
-        text: 'I think',
-        content: 'I\'m particularly fond of ideas with potential to make a real impact on people\'s lives and the environment.',
+        namePrefix: 'I think',
+        paragraphs: [
+          'I\'m particularly fond of ideas with potential to make a real impact on people\'s lives and the environment.',
+        ],
       },
       {
         name: 'prototypes',
         prefix: ', ',
-        text: 'I design',
-        content: 'I find the creative process of turning ideas and concepts into working prototypes to be challenging and deeply satisfying.',
+        namePrefix: 'I design',
+        paragraphs: [
+          'I find the creative process of turning ideas and concepts into working prototypes to be challenging and deeply satisfying.',
+        ],
       },
       {
         name: 'code',
         prefix: ', and ',
-        text: 'I write',
-        content: 'I do frontend development, and I\'m currently pretty excited about Vue and GraphQL.',
+        namePrefix: 'I write',
+        paragraphs: [
+          'I do frontend development, and I\'m currently pretty excited about Vue and GraphQL.',
+          '<a href="https://github.com/havgry">This thingie takes you to my GitHub profile</a>.',
+        ],
       },
     ],
   }),
