@@ -1,0 +1,129 @@
+@import '~normalize.css/normalize.css';
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
+
+@import 'utilities/_variables';
+@import 'utilities/_mixins';
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.content-container {
+  position: relative;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity $transition-speed ease;
+}
+
+.fade-enter-active {
+  transition-delay: $transition-speed;
+}
+
+.content {
+  width: 25em;
+  position: absolute;
+  left: 0;
+  display: block;
+  font-size: 2vw;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  line-height: 1.4;
+  margin: 4vw 6vw;
+  color: #111;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.page li:not(.router-link-active),
+.router-link-active .prefix {
+  opacity: 0;
+  z-index: -1;
+  position: relative;
+  transition-delay: 0s;
+}
+
+li,
+.prefix {
+  // This transition is not handled by Vue as we
+  // want to retain the `block` display property
+  transition: opacity $transition-speed ease $transition-speed;
+}
+
+nav {
+  font-size: 5vw;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  p & {
+    transition: color $transition-speed;
+    &:hover {
+      background: none;
+    }
+    &::selection {
+      text-shadow: none;
+    }
+  }
+}
+
+::selection {
+  background-color: $text-color;
+  color: $background-color;
+}
+
+.main-link {
+  border: $border-width solid transparent;
+  border-radius: $border-width;
+  padding: 0 $border-width * 2;
+  margin: 0 -$border-width * 3;
+  transition: border-color $transition-speed ease, background-color $transition-speed ease;
+  .router-link-active & {
+    color: $background-color;
+    pointer-events: none;
+  }
+}
+
+.back-link {
+  font-size: 2em;
+  font-family: 'Times New Roman', serif;
+}
+
+[page-name='ideas'] {
+  @include linkColor(#21d279,$background-color);
+}
+
+[page-name='prototypes'] {
+  @include linkColor(#ea3a76, $background-color);
+}
+
+[page-name='code'] {
+  @include linkColor(#00b0ff, $background-color);
+}
+
+.vcard {
+  font-size: 2vw;
+  position: absolute;
+  left: 6vw;
+  bottom: 6vw;
+}
