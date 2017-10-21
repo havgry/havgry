@@ -3,7 +3,7 @@
     <nav :class="{ page: !isHome }">
       <ul :class="{ 'is-hovering': isHoveringLink }">
         <template v-for="page in pages">
-          <router-link tag="li" :to="{ name: page.name }">
+          <router-link tag="li" :to="{ name: page.name }" :page-name="page.name">
             <span class="prefix" v-if="page.prefix" v-text="page.prefix"/>
             <span class="content-container">
               {{ page.namePrefix }} <span @mouseover="linkMouseOver" @mouseout="linkMouseOut"><a class="main-link">{{ page.name }}</a></span>
@@ -91,6 +91,22 @@ export default {
 
 $border-width: .05em;
 $transition-speed: .2s;
+$background-color: #fff;
+$text-color: #111;
+
+@mixin underline($color: currentColor, $bg-color: $background-color){
+  background: linear-gradient($background-color, $background-color),
+    linear-gradient($background-color, $background-color), linear-gradient($color, $color);
+  background-size: .05em 1px, .05em 1px, 1px 1px;
+  background-repeat: no-repeat, no-repeat, repeat-x;
+  text-shadow: .03em 0 $background-color, -.03em 0 $background-color,
+    0 .03em $background-color, 0 -.03em $background-color,
+    .06em 0 $background-color, -.06em 0 $background-color,
+    .09em 0 $background-color, -.09em 0 $background-color,
+    .12em 0 $background-color, -.12em 0 $background-color,
+    .15em 0 $background-color, -.15em 0 $background-color;
+  background-position: 0 95%, 100% 95%, 0 95%;
+}
 
 html {
   box-sizing: border-box;
@@ -133,6 +149,7 @@ body {
   font-weight: 300;
   line-height: 1.4;
   margin: 4vw 6vw;
+  color: #111;
 }
 
 ul {
@@ -163,15 +180,30 @@ nav {
 a {
   color: inherit;
   text-decoration: none;
+  p & {
+    transition: color $transition-speed;
+    &:hover {
+      background: none;
+    }
+    &::selection {
+      text-shadow: none;
+    }
+  }
+}
+
+::selection {
+  background-color: $text-color;
+  color: $background-color;
 }
 
 .main-link {
   border: $border-width solid transparent;
+  border-radius: $border-width;
   padding: 0 $border-width * 2;
   margin: 0 -$border-width * 3;
   transition: border-color $transition-speed ease, background-color $transition-speed ease;
   .router-link-active & {
-    color: #fff;
+    color: $background-color;
     pointer-events: none;
   }
 }
@@ -182,25 +214,35 @@ a {
 }
 
 @mixin linkColor($color) {
-  color: $color;
-  .router-link-active &,
-  &:hover {
+  .main-link {
+    color: $color;
+  }
+  &.router-link-active .main-link,
+  .main-link:hover {
     border-color: $color;
   }
-  .router-link-active & {
+  &.router-link-active .main-link {
+    color: $background-color;
     background: $color;
+  }
+  p a {
+    @include underline($color);
+    &:hover {
+      color: $color;
+      background: inherit;
+    }
   }
 }
 
-[href*='ideas'] {
+[page-name='ideas'] {
   @include linkColor(#21d279);
 }
 
-[href*='prototypes'] {
+[page-name='prototypes'] {
   @include linkColor(#ea3a76);
 }
 
-[href*='code'] {
+[page-name='code'] {
   @include linkColor(#00b0ff);
 }
 
