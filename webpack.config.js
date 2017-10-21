@@ -25,7 +25,10 @@ module.exports = {
       // But use vue-loader for all *.vue files
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader',
+        options: {
+          postcss: [require('postcss-cssnext')()]
+        }
       },
       {
         test: /\.js$/,
