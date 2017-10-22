@@ -1,5 +1,5 @@
-@import '~normalize.css/normalize.css';
 @import url('https://fonts.googleapis.com/css?family=Roboto:300');
+@import '~normalize.css/normalize.css';
 
 @import 'utilities/_variables';
 @import 'utilities/_mixins';
@@ -37,10 +37,10 @@ html {
   position: absolute;
   left: 0;
   display: block;
-  font-size: 2vw;
+  font-size: $font-size-regular;
   @media screen and (max-width: $mobile-max) {
-    font-size: 5vw;
-    width: 88vw;
+    font-size: $font-size-mobile;
+    width: $page-width - $padding-horizontal * 2;
   }
 }
 
@@ -48,8 +48,9 @@ body {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   line-height: 1.4;
-  margin: 4vw 6vw;
+  margin: $padding-vertical $padding-horizontal;
   color: #111;
+  background: $background-color;
 }
 
 ul {
@@ -117,7 +118,7 @@ a {
 }
 
 [page-name='ideas'] {
-  @include linkColor(#21d279,$background-color);
+  @include linkColor(#21d279, $background-color);
 }
 
 [page-name='prototypes'] {
@@ -129,12 +130,12 @@ a {
 }
 
 .vcard {
-  font-size: 2vw;
+  font-size: $font-size-regular;
   position: absolute;
-  left: 6vw;
-  bottom: 6vw;
+  left: $padding-horizontal;
+  bottom: $padding-horizontal; // Obligatory "not a typo" comment
   @media screen and (max-width: $mobile-max) {
-    font-size: 5vw;
+    font-size: $font-size-mobile;
   }
 }
 

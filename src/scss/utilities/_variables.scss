@@ -1,5 +1,14 @@
-$border-width: .05em !default;
-$transition-speed: .2s !default;
 $background-color: #fff !default;
 $text-color: #111 !default;
+
+$page-width: 100vw !default;
+$padding-vertical: 4vw !default;
+$padding-horizontal: 6vw !default;
+
 $mobile-max: 768px !default;
+
+$border-width: .05em !default;
+$transition-speed: .2s !default;
+
+$font-size-regular: 2vw !default;
+$font-size-mobile: 5vw !default;
