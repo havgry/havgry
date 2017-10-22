@@ -38,7 +38,7 @@ html {
   left: 0;
   display: block;
   font-size: $font-size-regular;
-  @media screen and (max-width: $mobile-max) {
+  @include mobile-portrait {
     font-size: $font-size-mobile;
     width: $page-width - $padding-horizontal * 2;
   }
@@ -76,7 +76,7 @@ li,
 
 nav {
   font-size: 5vw;
-  @media screen and (max-width: $mobile-max) {
+  @include mobile-portrait {
     font-size: 10vw;
   }
 }
@@ -134,12 +134,12 @@ a {
   position: absolute;
   left: $padding-horizontal;
   bottom: $padding-horizontal; // Obligatory "not a typo" comment
-  @media screen and (max-width: $mobile-max) {
+  @include mobile-portrait {
     font-size: $font-size-mobile;
   }
 }
 
-@media screen and (max-width: $mobile-max) {
+@include mobile-portrait {
   .prefix {
     display: none;
   }

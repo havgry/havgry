@@ -32,3 +32,9 @@
     }
   }
 }
+
+@mixin mobile-portrait {
+  @media screen and (max-width: $mobile-max) and (orientation: portrait) {
+    @content;
+  }
+}
