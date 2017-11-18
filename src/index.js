@@ -18,10 +18,9 @@ if (process.env.NODE_ENV === 'production') {
 
 sync(store, router)
 
-// eslint-disable-next-line no-new
-new Vue({
+export default new Vue({
   el: '#app',
   router,
   store,
-  render: h => h(App),
+  render: createElement => createElement(App),
 })
