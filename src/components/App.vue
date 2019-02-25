@@ -3,13 +3,13 @@
     <nav :class="{ page: !isHome }">
       <ul :class="{ 'is-hovering': isHoveringLink }">
         <template v-for="page in pages">
-          <router-link tag="li" :to="{ name: page.name }" :page-name="page.name">
+          <router-link tag="li" :to="{ name: page.name }" :page-name="page.name" :key="page.name">
             <span class="prefix" v-if="page.prefix" v-text="page.prefix"/>
             <span class="content-container">
               {{ page.namePrefix }} <span @mouseover="linkMouseOver" @mouseout="linkMouseOut"><a class="main-link">{{ page.name }}</a></span>
               <transition name="fade">
                 <div class="content" v-if="page.name === routeName">
-                  <p v-for="paragraph in page.paragraphs" v-html="paragraph"/>
+                  <p v-for="paragraph in page.paragraphs" v-html="paragraph" :key="paragraph"/>
                   <router-link class="back-link" :to="{ name: 'home' }">&larr;</router-link>
                 </div>
               </transition>
